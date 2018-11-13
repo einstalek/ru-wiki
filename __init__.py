@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#    http://www.apache.org/licenses/LICENSE-2.0 
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,10 +26,11 @@ class WikipediaSkill(MycroftSkill):
     def __init__(self):
         super(WikipediaSkill, self).__init__(name="WikipediaSkill")
 
-    @intent_handler(IntentBuilder("").require("Wikipedia").
-                    require("ArticleTitle"))
+    @intent_handler(IntentBuilder("").require("ArticleTitle").require("Wikipedia"))
     def handle_intent(self, message):
+        print(message.data)
         # Extract what the user asked about
+        print(message.data.get('ArticleTitle'))
         self._lookup(message.data.get("ArticleTitle"))
 
     @intent_handler(IntentBuilder("").require("More").
